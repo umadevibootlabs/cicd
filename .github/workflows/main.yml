@@ -29,12 +29,10 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-
-        # role-to-assume: arn:aws:iam::779527285137:role/AWSdevopscerttaskrole
-         aws-region: us-east-1
+# role-to-assume: arn:aws:iam::779527285137:role/AWSdevopscerttaskrole
          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
+         aws-region: us-east-1
       - name: setup terraform
         uses: hashicorp/setup-terraform@v1
         with:
@@ -52,11 +50,11 @@ jobs:
 
        
       - name: terraform plan
-        run: terraform plan -var-file=variables.tfvars
+        run: terraform plan 
        
       - name: terraform apply
-        run: terraform apply -var-file=variables.tfvars -auto-approve
+        run: terraform apply -auto-approve
         
       - name: terraform destroy
-        run: terraform destroy -var-file=variables.tfvars -auto-approve    
+        run: terraform destroy -auto-approve    
         
